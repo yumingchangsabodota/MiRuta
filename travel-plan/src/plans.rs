@@ -15,8 +15,8 @@ impl TravelPlan {
         self.plan.push(item);
     }
 
-    pub fn remove_item(&mut self, plan_index: u32){
-
+    pub fn remove_item(&mut self, plan_index: usize){
+        self.plan.remove(plan_index);
     }
 }
 
@@ -72,6 +72,9 @@ mod tests {
         };
         plan.add_item(item_2);
 
+        print!("{:?} \n", plan);
+        print!("remove first");
+        plan.remove_item(0);
         print!("{:?} \n", plan);
     }
 }
