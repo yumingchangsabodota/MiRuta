@@ -38,3 +38,4 @@ target/
 *.scale
 justfile
 rustc-ice-*
+test_data/

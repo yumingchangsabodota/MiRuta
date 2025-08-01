@@ -20,9 +20,25 @@ impl TravelPlan {
     }
 }
 
-
+#[derive(Debug, Deserialize, Serialize)]
 pub struct TravelPlans {
     pub plans: Vec<TravelPlan>
+}
+
+impl TravelPlans {
+
+    pub fn new() -> Self {
+        Self { 
+            plans: Vec::new(), 
+        }
+    }
+    pub fn add_plan(&mut self, plan: TravelPlan){
+        self.plans.push(plan);
+    }
+
+    pub fn remove_plan(&mut self, plan_index: usize){
+        self.plans.remove(plan_index);
+    }
 }
 
 
@@ -30,12 +46,13 @@ pub struct TravelPlans {
 #[cfg(test)]
 mod tests {
     use iso_currency::{Currency};
-    use chrono::{DateTime, NaiveDateTime, TimeZone, Utc};
+    use chrono::{NaiveDateTime, TimeZone, Utc};
 
     use crate::plan_item::{PlanItem, PlanItemType};
     use crate::cost::Cost;
 
     use crate::plans::{TravelPlan, TravelPlans};
+    use support::data_storage::{save_bin, read_bin};
     
 
     #[test]
@@ -76,5 +93,18 @@ mod tests {
         print!("remove first");
         plan.remove_item(0);
         print!("{:?} \n", plan);
+
+        let mut plans: TravelPlans = TravelPlans::new();
+
+        plans.add_plan(plan);
+        print!("{:?} \n", plans);
+
+        save_bin("../test_data/save_plans.bin", plans);
+
+        let plans: TravelPlans = read_bin("../test_data/save_plans.bin").expect("Failed to load data");
+        print!("Read from save_plans.bin \n");
+        print!("{:?} \n", plans);
+
+
     }
 }

@@ -53,9 +53,9 @@ mod tests {
     fn test_save_cost(){
         let cost= DummyCost::new(6, Currency::USD);
         print!("{:?} \n", &cost);
-        save_bin("../cost.bin", cost);
+        save_bin("../test_data/cost.bin", cost);
 
-        let read_cost: DummyCost = read_bin("../cost.bin").expect("Failed to read cost");
+        let read_cost: DummyCost = read_bin("../test_data/cost.bin").expect("Failed to read cost");
         print!("After saving \n");
         print!("{:?} \n", read_cost);
 

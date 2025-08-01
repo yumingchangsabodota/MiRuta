@@ -46,10 +46,10 @@ mod tests {
         };
         print!("{:?} \n", plan_item);
 
-        save_bin("../save_plan_item.bin", plan_item);
+        save_bin("../test_data/save_plan_item.bin", plan_item);
         
-        let read_data: PlanItem = read_bin("../save_plan_item.bin").expect("Failed to load data");
-        print!("Read from ../save_plan_item.bin \n");
+        let read_data: PlanItem = read_bin("../test_data/save_plan_item.bin").expect("Failed to load data");
+        print!("Read from ../test_data/save_plan_item.bin \n");
         print!("{:?} \n", read_data);
 
     }
