@@ -1,11 +1,11 @@
 
 use serde::{Deserialize, Serialize};
-use support::data_storage::{save_bin, read_bin};
 
 use crate::plan_item::PlanItem;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct TravelPlan {
+    pub name: String,
     pub plan: Vec<PlanItem>,
 }
 
@@ -41,8 +41,6 @@ impl TravelPlans {
     }
 }
 
-
-
 #[cfg(test)]
 mod tests {
     use iso_currency::{Currency};
@@ -69,7 +67,7 @@ mod tests {
             to: Utc.from_utc_datetime(&to_time),
             cost: Cost{cost:1000, currency: Currency::USD},
         };
-        let mut plan = TravelPlan {plan: Vec::new(),};
+        let mut plan = TravelPlan {name: String::from("Plan 1"), plan: Vec::new(),};
 
         plan.add_item(item_1);
 
